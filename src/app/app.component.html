@@ -1,9 +1,8 @@
-<input [(ngModel)]="inputBox" (ngModelChange)="log($event)">
+<input [(ngModel)]="inputBox" (ngModelChange)="queryService.onSearchChange($event)">
 <app-card 
-    [name]="pokemon"
-    [type]="pokemon_type"
-    [imageUrl]="imageUrl"
-    [height]="height"
-    [weight]="weight"
-
+    [name]="queryService.pokemon"
+    [type]="queryService.pokemon_type"
+    [imageUrl]="queryService.imageUrl"
+    [height]="queryService.height"
+    [weight]="queryService.weight"
 ></app-card>
