@@ -1,9 +1,11 @@
 <div class="card_container">
-  <div>{{name}}</div>
-  <div>{{type}}</div>
-  <div>
-    <img src={{imageUrl}}>
-  </div>
-  <div>{{height}}</div>
-  <div>{{weight}}</div>
+  <div class="card_name">{{ name }}</div>
+    <div class="card_img">
+        <img src="{{ imageUrl }}" />
+    </div>
+  <div class="card_type">{{ type }}</div>
+    <div class="stats">
+        <div class="card_height">{{ height }}</div>
+        <div class="card_weight">{{ weight }}</div>
+    </div>
 </div>

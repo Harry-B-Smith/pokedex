@@ -1,5 +1,54 @@
 .card_container {
     border: 1px solid black;
-    padding: 1rem;
+    padding: .5rem;
     margin: 1rem;
+    border-radius: 1rem;
+    width: fit-content;
+    background-color: #EFEFEF;
+}
+
+.card_name {
+    border: 1px solid black;
+    padding: .5rem;
+    border-radius: 1rem;
+    margin: .5rem;
+    background: #FFFFFF;
+    text-align: center;
+}
+
+.card_type {
+    border: 1px solid black;
+    padding: .5rem;
+    border-radius: 1rem;
+    background: yellow;
+    text-align: center;
+}
+
+.card_img {
+    border: 1px solid black;
+    border-radius: 100%;
+    background: #FFFFFF;
+    margin: .5rem;
+}
+
+.card_weight {
+    border: 1px solid black;
+    border-radius: 1rem;
+    width: fit-content;
+    padding: .25rem;
+    background: #FFFFFF;
+}
+
+.card_height {
+    border: 1px solid black;
+    border-radius: 1rem;
+    width: fit-content;
+    padding: .25rem;
+    background: #FFFFFF;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-evenly;
+    margin: .5rem;
 }
