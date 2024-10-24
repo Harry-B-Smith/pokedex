@@ -9,10 +9,10 @@ export class QueryService implements OnInit
 {
 
   public pokemon?: string;
-  public pokemon_type = '';
-  public imageUrl = "";
-  public height = '';
-  public weight = '';
+  public pokemon_type?: string;
+  public imageUrl?: string;
+  public height?: string;
+  public weight?: string;
 
     // recent search results
   // search caching
