@@ -8,44 +8,38 @@ import { debounceTime, map, Subject, switchMap } from 'rxjs';
 export class QueryService implements OnInit
 {
 
-  public pokemon?: string;
-  public pokemon_type?: string;
-  public imageUrl?: string;
-  public height?: string;
-  public weight?: string;
+  public pokemon = '';
+  public pokemon_type = '';
+  public imageUrl = '';
+  public height = '';
+  public weight = '';
 
     // recent search results
   // search caching
   // auto completion
-  // formify angular form
 
   constructor(private http:HttpClient, ) {
-    this.searchSubject.pipe(
-      debounceTime(3000),
-      switchMap(pokemon => {
-        let res = this.http.get<any>(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
-        return res;
-      })
-    ).subscribe(res => {
-      // handle errors
+ 
+   }
+  
+  ngOnInit(): void {
+    
+  }
+
+
+  onSearchChange(pokemon: string | null) {
+    if(!pokemon) {
+      return;
+    }
+    this.http.get<any>(`https://pokeapi.co/api/v2/pokemon/${pokemon}`).subscribe(res => {
       this.pokemon_type = res.types[0].type.name;
       this.imageUrl = res.sprites.front_default;
       this.pokemon = res.name;
       this.height = res.height;
       this.weight = res.weight;
       console.log(res);
-    });  
-   }
-
-  private searchSubject = new Subject<string>();
-  
-  ngOnInit(): void {
-    
-  }
-
-  onSearchChange(pokemon: string) {
-    console.log(pokemon);
-    this.searchSubject.next(pokemon);
-  }
+      });
+    }
+ 
 
 }

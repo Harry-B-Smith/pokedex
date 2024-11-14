@@ -1,4 +1,8 @@
-<input [(ngModel)]="inputBox" (ngModelChange)="queryService.onSearchChange($event)">
+
+<input [(ngModel)]="inputBox"
+[formControl]="testFormControl"
+>
+
 <app-card 
     [name]="queryService.pokemon"
     [type]="queryService.pokemon_type"
