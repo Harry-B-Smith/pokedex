@@ -14,12 +14,18 @@ export class QueryService implements OnInit
   public height = '';
   public weight = '';
 
-    // recent search results
-  // search caching
+  private cacheMap: Map<String, any> = new Map([]);
+  private pokemonList:Array<String> = [];
+
   // auto completion
 
-  constructor(private http:HttpClient, ) {
- 
+  constructor(private http:HttpClient) {
+    this.http.get<any>("https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0").subscribe(res => {
+      res.results.forEach((element:any) => {
+        this.pokemonList.push(element.name as string);
+      });
+      console.log(this.pokemonList);
+    });
    }
   
   ngOnInit(): void {
@@ -27,19 +33,35 @@ export class QueryService implements OnInit
   }
 
 
-  onSearchChange(pokemon: string | null) {
-    if(!pokemon) {
+  onSearchChange(pokemon: string) {
+    if(!this.pokemonList.includes(pokemon)) {
       return;
     }
+    if(this.cacheMap.has(pokemon)){ 
+      let res = this.cacheMap.get(pokemon);
+      this.pokemon_type = res.types[0].type.name;
+      this.imageUrl = res.sprites.front_default;
+      this.pokemon = res.name;
+      this.height = res.height;
+      this.weight = res.weight;
+      console.log("Cache Hit!")
+      return;
+    }
+    
     this.http.get<any>(`https://pokeapi.co/api/v2/pokemon/${pokemon}`).subscribe(res => {
       this.pokemon_type = res.types[0].type.name;
       this.imageUrl = res.sprites.front_default;
       this.pokemon = res.name;
       this.height = res.height;
       this.weight = res.weight;
-      console.log(res);
+      this.cacheMap.set(pokemon, res);
+      console.log(this.getRecentSearchResults());
       });
     }
  
+    getRecentSearchResults() {
+
+      return Array.from(this.cacheMap.keys());
+    }
 
 }

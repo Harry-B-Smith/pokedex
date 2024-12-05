@@ -10,3 +10,7 @@
     [height]="queryService.height"
     [weight]="queryService.weight"
 ></app-card>
+
+<div>
+    Recent Search Results: {{ queryService.getRecentSearchResults() }}
+</div>

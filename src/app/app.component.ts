@@ -14,7 +14,7 @@ import { QueryService } from './services/query.service';
 })
 export class AppComponent implements OnInit{
     title = 'pokedex';
-    public inputBox = "pikach";
+    public inputBox = "";
     public timer: any;
     testFormControl = new FormControl('');
     
@@ -26,7 +26,7 @@ export class AppComponent implements OnInit{
     
     this.testFormControl.valueChanges.subscribe(
       value => {
-        console.log(value);
+        if (value) 
         this.queryService.onSearchChange(value);
       }
     );
